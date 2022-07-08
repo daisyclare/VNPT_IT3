@@ -17,9 +17,9 @@ def help_command(update: Update, context: CallbackContext):
 
 def news_command(update: Update, context: CallbackContext):
   try:
-    limit_news = int(context.args[0]) # Lấy tham số từ input truyền vào -> cào về bao nhiêu tin
+    limit_news = int(context.args[0])
     here = News.GetNews(limit_news)
-    for x in range(0, len(here)): # Deserialize dữ liệu json trả về từ file News.py lúc nãy
+    for x in range(0, len(here)): 
       message = json.loads(here[x])
       update.message.reply_text(message['title'] + "\n" 
         + message['link'] + "\n" + message['description'])
@@ -31,7 +31,6 @@ def handle_message(update: Update, context: CallbackContext):
   response = R.sample_response(text)
   update.message.reply_text(response)
 
- # Function dùng để xác định lỗi gì khi có thông báo lỗi
 def error(update: Update, context: CallbackContext):
   print(f"Update {update} cause error {context.error}")
 
